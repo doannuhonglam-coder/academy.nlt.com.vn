@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Nunito', sans-serif;
+  }
+
+  body {
+    @apply bg-gray-950 text-white min-h-screen;
+  }
+
+  * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  .academy-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .academy-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+  .academy-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-full;
+  }
+}
