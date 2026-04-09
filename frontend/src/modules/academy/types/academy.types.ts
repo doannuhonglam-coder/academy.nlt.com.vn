@@ -27,7 +27,7 @@ export interface PersonBrief {
 
 // ─── Courses ──────────────────────────────────────────────────────────────────
 
-export type NhileTier = 'volunteer' | 'nhile-star' | 'nhile-certificate';
+export type NhileTier = 'volunteer' | 'work-and-learn' | 'nhile-star' | 'nhile-certificate';
 
 export interface CourseBrief {
   id: string;
@@ -46,8 +46,9 @@ export interface CourseBrief {
   offline_size_mb: number | null;
   is_published: boolean;
   locked?: boolean;
-  required_tier?: NhileTier;
-  unlock_date?: string; // ISO date — if locked until a date
+  required_tier?: NhileTier;       // tier-lock: need this tier
+  required_credits?: number;       // credit-lock: need this many Nhile Credits
+  unlock_date?: string;            // ISO date — if locked until a date
 }
 
 export interface ProgramBrief {

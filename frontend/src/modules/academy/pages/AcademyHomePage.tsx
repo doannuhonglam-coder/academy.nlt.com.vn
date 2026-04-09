@@ -235,41 +235,42 @@ export default function AcademyHomePage() {
                       </button>
                     </div>
 
-                    {/* Progress to Nhile Star */}
+                    {/* Progress to Work & Learn */}
                     <div>
                       <div className="flex justify-between text-[10px] text-gray-500 mb-1.5">
-                        <span>Tiến đến <span className="text-gold-400 font-bold">⭐ Nhile Star</span></span>
+                        <span>Tiến đến <span className="text-blue-400 font-bold">💼 Work &amp; Learn</span></span>
                         <span className="text-gray-400 font-bold">
                           {stats ? Math.min(stats.total_xp, 1500) : 0}/1500 XP
                         </span>
                       </div>
                       <div className="h-2 bg-white/5 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-teal-500 to-gold-400 rounded-full transition-all"
+                          className="h-full bg-gradient-to-r from-teal-500 to-blue-400 rounded-full transition-all"
                           style={{ width: `${Math.min(((stats?.total_xp ?? 0) / 1500) * 100, 100)}%` }}
                         />
                       </div>
                       <p className="text-[9px] text-gray-600 mt-1.5">
-                        Nhile Star → Đăng ký làm việc thực chiến tại các dự án thật
+                        Work &amp; Learn → Làm dự án thật, dành cho member có kỷ luật học tập tốt
                       </p>
                     </div>
                   </div>
 
-                  {/* Tier steps */}
-                  <div className="px-4 pb-3 flex gap-2">
+                  {/* 4-Tier steps */}
+                  <div className="px-4 pb-3 flex gap-1.5">
                     {[
-                      { icon: '🌱', label: 'Volunteer', active: true,  desc: 'Học & tích Credit' },
-                      { icon: '⭐', label: 'Nhile Star', active: false, desc: 'Dự án thực tế' },
-                      { icon: '🏆', label: 'Certificate', active: false, desc: 'Chứng chỉ NLT' },
+                      { icon: '🌱', label: 'Volunteer',   active: true,  desc: 'Học & tích Credit' },
+                      { icon: '💼', label: 'Work & Learn', active: false, desc: 'Dự án thực tế' },
+                      { icon: '⭐', label: 'Nhile Star',   active: false, desc: 'Co-lead/Leader' },
+                      { icon: '🏆', label: 'Certificate',  active: false, desc: 'Chứng chỉ NLT' },
                     ].map((t, i) => (
-                      <div key={i} className={`flex-1 rounded-xl px-2 py-2 text-center border ${
+                      <div key={i} className={`flex-1 rounded-xl px-1.5 py-2 text-center border ${
                         t.active
                           ? 'bg-teal-500/10 border-teal-500/25'
                           : 'bg-white/2 border-white/5'
                       }`}>
-                        <span className={`text-sm block ${t.active ? '' : 'opacity-30'}`}>{t.icon}</span>
-                        <p className={`text-[9px] font-bold mt-0.5 ${t.active ? 'text-teal-300' : 'text-gray-600'}`}>{t.label}</p>
-                        <p className={`text-[8px] mt-0.5 leading-tight ${t.active ? 'text-gray-400' : 'text-gray-700'}`}>{t.desc}</p>
+                        <span className={`text-sm block ${t.active ? '' : 'opacity-25'}`}>{t.icon}</span>
+                        <p className={`text-[8px] font-bold mt-0.5 leading-tight ${t.active ? 'text-teal-300' : 'text-gray-600'}`}>{t.label}</p>
+                        <p className={`text-[7px] mt-0.5 leading-tight ${t.active ? 'text-gray-400' : 'text-gray-700'}`}>{t.desc}</p>
                       </div>
                     ))}
                   </div>

@@ -102,54 +102,57 @@ export default function AcademyExplorePage() {
                 />
               </div>
 
-              {/* ── Tier Journey ── */}
+              {/* ── 4-Tier Journey ── */}
               <div className="bg-white/3 border border-white/8 rounded-2xl p-4 mb-5">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Hành trình của bạn</p>
-                <div className="flex items-center gap-1">
-                  {/* Volunteer */}
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Hành trình Nhile</p>
+                <div className="flex items-start gap-0.5">
+
+                  {/* 1 — Volunteer */}
                   <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="w-10 h-10 rounded-full bg-teal-500/20 border-2 border-teal-400 flex items-center justify-center mb-1.5 ring-2 ring-teal-400/30">
-                      <span className="text-lg">🌱</span>
+                    <div className="w-9 h-9 rounded-full bg-teal-500/20 border-2 border-teal-400 flex items-center justify-center mb-1 ring-2 ring-teal-400/20">
+                      <span className="text-base">🌱</span>
                     </div>
-                    <p className="text-[10px] font-bold text-teal-400">Volunteer</p>
-                    <p className="text-[9px] text-gray-500 mt-0.5 leading-tight">Học &amp; tích<br/>Nhile Credit</p>
+                    <p className="text-[9px] font-bold text-teal-400 leading-tight">Volunteer</p>
+                    <p className="text-[8px] text-gray-500 mt-0.5 leading-tight">Học &amp; tích<br/>Nhile Credit</p>
                   </div>
 
-                  {/* Arrow */}
-                  <div className="flex-shrink-0 flex items-center px-1">
-                    <div className="h-px w-6 bg-gradient-to-r from-teal-500/50 to-gold-500/50" />
-                    <span className="text-gray-600 text-xs">›</span>
-                  </div>
+                  <div className="flex-shrink-0 mt-4 w-4 border-t border-dashed border-gray-700" />
 
-                  {/* Nhile Star */}
+                  {/* 2 — Work & Learn */}
                   <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="w-10 h-10 rounded-full bg-gold-500/15 border-2 border-gold-400/40 border-dashed flex items-center justify-center mb-1.5">
-                      <span className="text-lg opacity-60">⭐</span>
+                    <div className="w-9 h-9 rounded-full bg-blue-500/10 border-2 border-blue-400/30 border-dashed flex items-center justify-center mb-1">
+                      <span className="text-base opacity-50">💼</span>
                     </div>
-                    <p className="text-[10px] font-bold text-gold-400/60">Nhile Star</p>
-                    <p className="text-[9px] text-gray-600 mt-0.5 leading-tight">Làm dự án<br/>thực tế</p>
+                    <p className="text-[9px] font-bold text-blue-400/60 leading-tight">Work &amp;<br/>Learn</p>
+                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Dự án<br/>thực tế</p>
                   </div>
 
-                  {/* Arrow */}
-                  <div className="flex-shrink-0 flex items-center px-1">
-                    <div className="h-px w-6 bg-gradient-to-r from-gold-500/30 to-violet-500/30" />
-                    <span className="text-gray-700 text-xs">›</span>
-                  </div>
+                  <div className="flex-shrink-0 mt-4 w-4 border-t border-dashed border-gray-700" />
 
-                  {/* Nhile Certificate */}
+                  {/* 3 — Nhile Star */}
                   <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="w-10 h-10 rounded-full bg-violet-500/10 border-2 border-violet-400/25 border-dashed flex items-center justify-center mb-1.5">
-                      <span className="text-lg opacity-40">🏆</span>
+                    <div className="w-9 h-9 rounded-full bg-gold-500/10 border-2 border-gold-400/25 border-dashed flex items-center justify-center mb-1">
+                      <span className="text-base opacity-40">⭐</span>
                     </div>
-                    <p className="text-[10px] font-bold text-violet-400/50">Certificate</p>
-                    <p className="text-[9px] text-gray-600 mt-0.5 leading-tight">Chứng chỉ<br/>được công nhận</p>
+                    <p className="text-[9px] font-bold text-gold-400/50 leading-tight">Nhile<br/>Star</p>
+                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Co-lead/<br/>Leader</p>
+                  </div>
+
+                  <div className="flex-shrink-0 mt-4 w-4 border-t border-dashed border-gray-700" />
+
+                  {/* 4 — Certificate */}
+                  <div className="flex-1 flex flex-col items-center text-center">
+                    <div className="w-9 h-9 rounded-full bg-violet-500/10 border-2 border-violet-400/20 border-dashed flex items-center justify-center mb-1">
+                      <span className="text-base opacity-30">🏆</span>
+                    </div>
+                    <p className="text-[9px] font-bold text-violet-400/40 leading-tight">Nhile<br/>Cert.</p>
+                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Chứng chỉ<br/>NLT</p>
                   </div>
                 </div>
 
-                {/* Progress note */}
-                <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
+                <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between">
                   <p className="text-[10px] text-gray-500">Bạn đang ở: <span className="text-teal-400 font-bold">🌱 Volunteer</span></p>
-                  <button className="text-[10px] text-coral-400 font-bold hover:text-coral-300">Xem quyền lợi →</button>
+                  <button className="text-[10px] text-coral-400 font-bold hover:text-coral-300">Chi tiết →</button>
                 </div>
               </div>
 
