@@ -194,6 +194,88 @@ export default function AcademyHomePage() {
                 </div>
               )}
 
+              {/* ── Nhile Tier Card ── */}
+              <div className="px-4 mt-4">
+                <div className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-900 border border-white/8 rounded-2xl overflow-hidden">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-teal-600/20 to-teal-500/5 border-b border-white/5 px-4 py-3 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-full bg-teal-500/25 border border-teal-400/50 flex items-center justify-center">
+                        <span className="text-base">🌱</span>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-white">Volunteer</p>
+                        <p className="text-[10px] text-teal-400">Cấp độ hiện tại</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => navigate('/training/profile')}
+                      className="text-[10px] font-bold text-coral-400 bg-coral-500/10 border border-coral-500/20 px-2.5 py-1 rounded-full hover:bg-coral-500/20 transition-colors"
+                    >
+                      Nâng cấp ⭐
+                    </button>
+                  </div>
+
+                  {/* Credits + next tier */}
+                  <div className="px-4 py-3">
+                    {/* Credits */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">🪙</span>
+                        <div>
+                          <p className="text-base font-bold text-white">{stats ? stats.total_xp : 0}</p>
+                          <p className="text-[10px] text-gray-400">Nhile Credits</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => navigate('/training/profile')}
+                        className="text-[10px] text-gold-400 font-medium hover:underline"
+                      >
+                        Đổi quà →
+                      </button>
+                    </div>
+
+                    {/* Progress to Nhile Star */}
+                    <div>
+                      <div className="flex justify-between text-[10px] text-gray-500 mb-1.5">
+                        <span>Tiến đến <span className="text-gold-400 font-bold">⭐ Nhile Star</span></span>
+                        <span className="text-gray-400 font-bold">
+                          {stats ? Math.min(stats.total_xp, 1500) : 0}/1500 XP
+                        </span>
+                      </div>
+                      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-teal-500 to-gold-400 rounded-full transition-all"
+                          style={{ width: `${Math.min(((stats?.total_xp ?? 0) / 1500) * 100, 100)}%` }}
+                        />
+                      </div>
+                      <p className="text-[9px] text-gray-600 mt-1.5">
+                        Nhile Star → Đăng ký làm việc thực chiến tại các dự án thật
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Tier steps */}
+                  <div className="px-4 pb-3 flex gap-2">
+                    {[
+                      { icon: '🌱', label: 'Volunteer', active: true,  desc: 'Học & tích Credit' },
+                      { icon: '⭐', label: 'Nhile Star', active: false, desc: 'Dự án thực tế' },
+                      { icon: '🏆', label: 'Certificate', active: false, desc: 'Chứng chỉ NLT' },
+                    ].map((t, i) => (
+                      <div key={i} className={`flex-1 rounded-xl px-2 py-2 text-center border ${
+                        t.active
+                          ? 'bg-teal-500/10 border-teal-500/25'
+                          : 'bg-white/2 border-white/5'
+                      }`}>
+                        <span className={`text-sm block ${t.active ? '' : 'opacity-30'}`}>{t.icon}</span>
+                        <p className={`text-[9px] font-bold mt-0.5 ${t.active ? 'text-teal-300' : 'text-gray-600'}`}>{t.label}</p>
+                        <p className={`text-[8px] mt-0.5 leading-tight ${t.active ? 'text-gray-400' : 'text-gray-700'}`}>{t.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
               {/* ── Quick Stats Cards ── */}
               {stats && (
                 <div className="px-4 mt-4">

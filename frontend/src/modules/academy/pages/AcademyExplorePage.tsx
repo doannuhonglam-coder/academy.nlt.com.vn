@@ -65,25 +65,33 @@ export default function AcademyExplorePage() {
         <main className="flex-1 pb-20 md:pb-6">
 
           {/* ── Hero Banner ─────────────────────────────── */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-gray-900 via-gray-900 to-gray-900 border-b border-white/5 px-4 md:px-8 py-8 md:py-10">
-            {/* Background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-coral-500/8 via-transparent to-teal-500/8 pointer-events-none" />
-            <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-coral-500/5 blur-3xl pointer-events-none" />
+          <div className="relative overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border-b border-white/5 px-4 md:px-8 pt-8 pb-6 md:pt-10 md:pb-8">
+            {/* Background blobs */}
+            <div className="absolute inset-0 bg-gradient-to-br from-coral-500/6 via-transparent to-teal-500/6 pointer-events-none" />
+            <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-coral-500/4 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-1/3 w-48 h-48 rounded-full bg-gold-500/4 blur-3xl pointer-events-none" />
 
             <div className="relative max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-coral-500/15 border border-coral-500/20 rounded-full px-3 py-1 mb-3">
-                <span className="text-xs font-bold text-coral-400 uppercase tracking-wider">🎯 Học để làm được việc</span>
+              {/* Label */}
+              <div className="inline-flex items-center gap-2 bg-coral-500/15 border border-coral-500/20 rounded-full px-3 py-1 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-coral-400 animate-pulse" />
+                <span className="text-xs font-bold text-coral-400 uppercase tracking-wider">Học nghề thực chiến</span>
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">
-                Khoá học thực chiến<br />
-                <span className="bg-gradient-to-r from-coral-400 to-gold-400 bg-clip-text text-transparent">cho người Việt trẻ</span>
+
+              {/* Main slogan */}
+              <h1 className="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-2">
+                Kỹ năng thật.{' '}
+                <span className="bg-gradient-to-r from-coral-400 via-gold-400 to-teal-400 bg-clip-text text-transparent">
+                  Dự án thật.
+                </span>
+                {' '}Tương lai thật.
               </h1>
               <p className="text-sm text-gray-400 mb-5 max-w-md leading-relaxed">
-                Không lý thuyết suông. Học xong áp dụng được ngay — tại công việc, trong cuộc sống.
+                Học xong là làm được. Làm được là thăng tiến — không lý thuyết suông, không slide nhàm chán.
               </p>
 
-              {/* Search bar — big & prominent */}
-              <div className="relative max-w-lg">
+              {/* Search bar */}
+              <div className="relative max-w-lg mb-6">
                 <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-base pointer-events-none">🔍</span>
                 <input
                   type="text"
@@ -94,8 +102,59 @@ export default function AcademyExplorePage() {
                 />
               </div>
 
+              {/* ── Tier Journey ── */}
+              <div className="bg-white/3 border border-white/8 rounded-2xl p-4 mb-5">
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Hành trình của bạn</p>
+                <div className="flex items-center gap-1">
+                  {/* Volunteer */}
+                  <div className="flex-1 flex flex-col items-center text-center">
+                    <div className="w-10 h-10 rounded-full bg-teal-500/20 border-2 border-teal-400 flex items-center justify-center mb-1.5 ring-2 ring-teal-400/30">
+                      <span className="text-lg">🌱</span>
+                    </div>
+                    <p className="text-[10px] font-bold text-teal-400">Volunteer</p>
+                    <p className="text-[9px] text-gray-500 mt-0.5 leading-tight">Học &amp; tích<br/>Nhile Credit</p>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="flex-shrink-0 flex items-center px-1">
+                    <div className="h-px w-6 bg-gradient-to-r from-teal-500/50 to-gold-500/50" />
+                    <span className="text-gray-600 text-xs">›</span>
+                  </div>
+
+                  {/* Nhile Star */}
+                  <div className="flex-1 flex flex-col items-center text-center">
+                    <div className="w-10 h-10 rounded-full bg-gold-500/15 border-2 border-gold-400/40 border-dashed flex items-center justify-center mb-1.5">
+                      <span className="text-lg opacity-60">⭐</span>
+                    </div>
+                    <p className="text-[10px] font-bold text-gold-400/60">Nhile Star</p>
+                    <p className="text-[9px] text-gray-600 mt-0.5 leading-tight">Làm dự án<br/>thực tế</p>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="flex-shrink-0 flex items-center px-1">
+                    <div className="h-px w-6 bg-gradient-to-r from-gold-500/30 to-violet-500/30" />
+                    <span className="text-gray-700 text-xs">›</span>
+                  </div>
+
+                  {/* Nhile Certificate */}
+                  <div className="flex-1 flex flex-col items-center text-center">
+                    <div className="w-10 h-10 rounded-full bg-violet-500/10 border-2 border-violet-400/25 border-dashed flex items-center justify-center mb-1.5">
+                      <span className="text-lg opacity-40">🏆</span>
+                    </div>
+                    <p className="text-[10px] font-bold text-violet-400/50">Certificate</p>
+                    <p className="text-[9px] text-gray-600 mt-0.5 leading-tight">Chứng chỉ<br/>được công nhận</p>
+                  </div>
+                </div>
+
+                {/* Progress note */}
+                <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
+                  <p className="text-[10px] text-gray-500">Bạn đang ở: <span className="text-teal-400 font-bold">🌱 Volunteer</span></p>
+                  <button className="text-[10px] text-coral-400 font-bold hover:text-coral-300">Xem quyền lợi →</button>
+                </div>
+              </div>
+
               {/* Platform stats */}
-              <div className="flex items-center gap-5 mt-5">
+              <div className="flex items-center gap-5">
                 {PLATFORM_STATS.map(s => (
                   <div key={s.label} className="flex items-center gap-1.5">
                     <span className="text-base">{s.icon}</span>
