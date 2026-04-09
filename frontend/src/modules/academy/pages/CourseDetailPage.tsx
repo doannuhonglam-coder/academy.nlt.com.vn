@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import Topbar from '../components/layout/Topbar';
 import Sidebar from '../components/layout/Sidebar';
+import MobileBottomNav from '../components/layout/MobileBottomNav';
 import type { CourseDetailWithProgress } from '../types/academy.types';
 import { API_PREFIX, STALE_TIME, LESSON_TYPE_ICON } from '../constants/academy.constants';
 
@@ -170,6 +171,8 @@ export default function CourseDetailPage() {
           </aside>
         </div>
       </div>
+
+      <MobileBottomNav />
     </div>
   );
 }

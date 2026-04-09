@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import Topbar from '../components/layout/Topbar';
 import Sidebar from '../components/layout/Sidebar';
+import MobileBottomNav from '../components/layout/MobileBottomNav';
 import ProgressBar from '../components/ProgressBar';
 import type { GamificationState, MyCertsResponse } from '../types/academy.types';
 import { API_PREFIX, STALE_TIME } from '../constants/academy.constants';
@@ -163,6 +164,8 @@ export default function ProfilePage() {
           )}
         </main>
       </div>
+
+      <MobileBottomNav />
     </div>
   );
 }
