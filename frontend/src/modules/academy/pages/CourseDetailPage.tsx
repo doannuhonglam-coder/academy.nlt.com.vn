@@ -2,20 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import Topbar from '../components/layout/Topbar';
 import Sidebar from '../components/layout/Sidebar';
-import ProgressBar from '../components/ProgressBar';
-import type { CourseDetailWithProgress, LessonWithStatus } from '../types/academy.types';
+import type { CourseDetailWithProgress } from '../types/academy.types';
 import { API_PREFIX, STALE_TIME, LESSON_TYPE_ICON } from '../constants/academy.constants';
 
 async function fetchCourseDetail(slug: string): Promise<CourseDetailWithProgress> {
   const res = await fetch(`${API_PREFIX}/courses/${slug}`);
   if (!res.ok) throw new Error('Course not found');
   return res.json();
-}
-
-function statusIcon(status: LessonWithStatus['status']) {
-  if (status === 'completed') return <span className="text-teal-400">✓</span>;
-  if (status === 'locked') return <span className="text-gray-600">🔒</span>;
-  return <span className="w-5 h-5 rounded-full border-2 border-coral-500 inline-block" />;
 }
 
 export default function CourseDetailPage() {
