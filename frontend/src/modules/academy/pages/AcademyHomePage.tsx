@@ -260,7 +260,7 @@ export default function AcademyHomePage() {
                     {[
                       { icon: '🌱', label: 'Volunteer',   active: true,  desc: 'Học & tích Credit' },
                       { icon: '💼', label: 'Work & Learn', active: false, desc: 'Dự án thực tế' },
-                      { icon: '⭐', label: 'Nhile Star',   active: false, desc: 'Co-lead/Leader' },
+                      { icon: '⭐', label: 'Nhile Star',   active: false, desc: 'Founder mentor' },
                       { icon: '🏆', label: 'Certificate',  active: false, desc: 'Chứng chỉ NLT' },
                     ].map((t, i) => (
                       <div key={i} className={`flex-1 rounded-xl px-1.5 py-2 text-center border ${

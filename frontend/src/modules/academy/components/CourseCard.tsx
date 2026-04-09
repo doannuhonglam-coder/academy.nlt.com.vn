@@ -39,7 +39,7 @@ function learnerCount(slug: string): number {
 const TIER_CONFIG: Record<NhileTier, { label: string; icon: string; badgeClass: string; desc: string }> = {
   'volunteer':         { label: 'Volunteer',      icon: '🌱', badgeClass: 'bg-teal-600/90',   desc: 'Tất cả học viên' },
   'work-and-learn':    { label: 'Work & Learn',   icon: '💼', badgeClass: 'bg-blue-600/90',   desc: 'Member kỷ luật tốt — admin duyệt' },
-  'nhile-star':        { label: 'Nhile Star',     icon: '⭐', badgeClass: 'bg-gold-500/90',   desc: 'Chỉ dành cho Co-lead/Leader' },
+  'nhile-star':        { label: 'Nhile Star',     icon: '⭐', badgeClass: 'bg-gold-500/90',   desc: 'Được dẫn dắt bởi founder & leader từ doanh nghiệp thực chiến' },
   'nhile-certificate': { label: 'Certificate',    icon: '🏆', badgeClass: 'bg-violet-600/90', desc: 'Hoàn thành toàn bộ hành trình' },
 };
 

@@ -135,7 +135,7 @@ export default function AcademyExplorePage() {
                       <span className="text-base opacity-40">⭐</span>
                     </div>
                     <p className="text-[9px] font-bold text-gold-400/50 leading-tight">Nhile<br/>Star</p>
-                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Co-lead/<br/>Leader</p>
+                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Mentor từ<br/>founder</p>
                   </div>
 
                   <div className="flex-shrink-0 mt-4 w-4 border-t border-dashed border-gray-700" />
@@ -150,7 +150,15 @@ export default function AcademyExplorePage() {
                   </div>
                 </div>
 
-                <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between">
+                {/* Nhile Star call-out */}
+                <div className="mt-3 mx-0 bg-gold-500/6 border border-gold-500/15 rounded-xl px-3 py-2">
+                  <p className="text-[10px] text-gold-400 font-bold mb-0.5">⭐ Nhile Star là gì?</p>
+                  <p className="text-[9px] text-gray-400 leading-relaxed">
+                    Được dẫn dắt và làm việc cùng những leader đi trước — là founder của các công ty thực chiến. Không học lý thuyết, bạn học bằng cách làm việc thật.
+                  </p>
+                </div>
+
+                <div className="mt-2.5 pt-2.5 border-t border-white/5 flex items-center justify-between">
                   <p className="text-[10px] text-gray-500">Bạn đang ở: <span className="text-teal-400 font-bold">🌱 Volunteer</span></p>
                   <button className="text-[10px] text-coral-400 font-bold hover:text-coral-300">Chi tiết →</button>
                 </div>

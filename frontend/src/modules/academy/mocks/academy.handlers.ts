@@ -116,7 +116,7 @@ const mockCourses: CourseBrief[] = [
     id: 'course-6',
     slug: 'lap-trinh-web-thuc-chien',
     title: 'Lập Trình Web Thực Chiến',
-    description: 'Xây dựng sản phẩm web thật từ A-Z. Dành cho thành viên có vai trò Coleader/Leader.',
+    description: 'Xây dựng sản phẩm web thật từ A-Z. Học và làm cùng founder, leader từ các công ty thực chiến.',
     content_type: 'internal',
     proficiency_level: 'L3',
     thumbnail_url: null,
