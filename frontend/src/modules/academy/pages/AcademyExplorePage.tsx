@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Topbar from '../components/layout/Topbar';
 import Sidebar from '../components/layout/Sidebar';
@@ -26,18 +26,14 @@ const CATEGORIES = [
   { id: 'kinh-doanh', icon: '📊', label: 'Kinh doanh' },
 ];
 
-// Stats for hero social proof
-const PLATFORM_STATS = [
-  { icon: '👨‍🎓', value: '12,000+', label: 'Học viên' },
-  { icon: '📚', value: '30+',     label: 'Khoá học' },
-  { icon: '🏆', value: '2,400+',  label: 'Chứng chỉ' },
-];
 
 export default function AcademyExplorePage() {
   const [search, setSearch]       = useState('');
   const [category, setCategory]   = useState('all');
   const [offlineOnly, setOffline] = useState(false);
   const [searchInput, setInput]   = useState('');
+  const [tierExpanded, setTierExpanded] = useState(false);
+  const pillsRef = useRef<HTMLDivElement>(null);
 
   const { data, isLoading } = useQuery({
     queryKey: ['academy-courses', search, category],
@@ -64,122 +60,86 @@ export default function AcademyExplorePage() {
 
         <main className="flex-1 pb-20 md:pb-6">
 
-          {/* ── Hero Banner ─────────────────────────────── */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border-b border-white/5 px-4 md:px-8 pt-8 pb-6 md:pt-10 md:pb-8">
-            {/* Background blobs */}
-            <div className="absolute inset-0 bg-gradient-to-br from-coral-500/6 via-transparent to-teal-500/6 pointer-events-none" />
-            <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-coral-500/4 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-1/3 w-48 h-48 rounded-full bg-gold-500/4 blur-3xl pointer-events-none" />
+          {/* ── Hero Banner — compact ─────────────────── */}
+          <div className="relative overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 border-b border-white/5 px-4 md:px-8 pt-5 pb-4">
+            <div className="absolute inset-0 bg-gradient-to-br from-coral-500/5 via-transparent to-teal-500/5 pointer-events-none" />
 
-            <div className="relative max-w-2xl">
-              {/* Label */}
-              <div className="inline-flex items-center gap-2 bg-coral-500/15 border border-coral-500/20 rounded-full px-3 py-1 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-coral-400 animate-pulse" />
-                <span className="text-xs font-bold text-coral-400 uppercase tracking-wider">Học nghề thực chiến</span>
+            <div className="relative">
+              {/* Slogan + search — always visible */}
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <div>
+                  <h1 className="text-lg md:text-2xl font-extrabold text-white leading-tight">
+                    Kỹ năng thật.{' '}
+                    <span className="bg-gradient-to-r from-coral-400 to-gold-400 bg-clip-text text-transparent">Dự án thật.</span>
+                  </h1>
+                  <p className="text-xs text-gray-500 mt-0.5">Học xong là làm được — không lý thuyết suông.</p>
+                </div>
+                {/* Stats mini */}
+                <div className="flex-shrink-0 text-right">
+                  <p className="text-sm font-bold text-white">12k+</p>
+                  <p className="text-[9px] text-gray-500">học viên</p>
+                </div>
               </div>
 
-              {/* Main slogan */}
-              <h1 className="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-2">
-                Kỹ năng thật.{' '}
-                <span className="bg-gradient-to-r from-coral-400 via-gold-400 to-teal-400 bg-clip-text text-transparent">
-                  Dự án thật.
-                </span>
-                {' '}Tương lai thật.
-              </h1>
-              <p className="text-sm text-gray-400 mb-5 max-w-md leading-relaxed">
-                Học xong là làm được. Làm được là thăng tiến — không lý thuyết suông, không slide nhàm chán.
-              </p>
-
               {/* Search bar */}
-              <div className="relative max-w-lg mb-6">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-base pointer-events-none">🔍</span>
+              <div className="relative mb-3">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none">🔍</span>
                 <input
                   type="text"
                   value={searchInput}
                   onChange={e => handleSearch(e.target.value)}
                   placeholder="Tìm khoá học bạn muốn học..."
-                  className="w-full bg-white/8 border border-white/15 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-coral-500/60 focus:bg-white/10 transition-all"
+                  className="w-full bg-white/8 border border-white/12 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-coral-500/60 focus:bg-white/10 transition-all"
                 />
               </div>
 
-              {/* ── 4-Tier Journey ── */}
-              <div className="bg-white/3 border border-white/8 rounded-2xl p-4 mb-5">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Hành trình Nhile</p>
-                <div className="flex items-start gap-0.5">
-
-                  {/* 1 — Volunteer */}
-                  <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="w-9 h-9 rounded-full bg-teal-500/20 border-2 border-teal-400 flex items-center justify-center mb-1 ring-2 ring-teal-400/20">
-                      <span className="text-base">🌱</span>
-                    </div>
-                    <p className="text-[9px] font-bold text-teal-400 leading-tight">Volunteer</p>
-                    <p className="text-[8px] text-gray-500 mt-0.5 leading-tight">Học &amp; tích<br/>Nhile Credit</p>
-                  </div>
-
-                  <div className="flex-shrink-0 mt-4 w-4 border-t border-dashed border-gray-700" />
-
-                  {/* 2 — Work & Learn */}
-                  <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="w-9 h-9 rounded-full bg-blue-500/10 border-2 border-blue-400/30 border-dashed flex items-center justify-center mb-1">
-                      <span className="text-base opacity-50">💼</span>
-                    </div>
-                    <p className="text-[9px] font-bold text-blue-400/60 leading-tight">Work &amp;<br/>Learn</p>
-                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Dự án<br/>thực tế</p>
-                  </div>
-
-                  <div className="flex-shrink-0 mt-4 w-4 border-t border-dashed border-gray-700" />
-
-                  {/* 3 — Nhile Star */}
-                  <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="w-9 h-9 rounded-full bg-gold-500/10 border-2 border-gold-400/25 border-dashed flex items-center justify-center mb-1">
-                      <span className="text-base opacity-40">⭐</span>
-                    </div>
-                    <p className="text-[9px] font-bold text-gold-400/50 leading-tight">Nhile<br/>Star</p>
-                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Mentor từ<br/>founder</p>
-                  </div>
-
-                  <div className="flex-shrink-0 mt-4 w-4 border-t border-dashed border-gray-700" />
-
-                  {/* 4 — Certificate */}
-                  <div className="flex-1 flex flex-col items-center text-center">
-                    <div className="w-9 h-9 rounded-full bg-violet-500/10 border-2 border-violet-400/20 border-dashed flex items-center justify-center mb-1">
-                      <span className="text-base opacity-30">🏆</span>
-                    </div>
-                    <p className="text-[9px] font-bold text-violet-400/40 leading-tight">Nhile<br/>Cert.</p>
-                    <p className="text-[8px] text-gray-600 mt-0.5 leading-tight">Chứng chỉ<br/>NLT</p>
-                  </div>
+              {/* ── Tier strip — collapsible ── */}
+              <button
+                onClick={() => setTierExpanded(v => !v)}
+                className="w-full flex items-center justify-between bg-white/3 border border-white/8 rounded-xl px-3 py-2 text-left hover:bg-white/5 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">🌱</span>
+                  <span className="text-xs text-gray-300 font-medium">Volunteer</span>
+                  <span className="text-gray-600 text-xs">→</span>
+                  <span className="text-xs text-gray-500">💼</span>
+                  <span className="text-gray-600 text-xs">→</span>
+                  <span className="text-xs text-gray-500">⭐</span>
+                  <span className="text-gray-600 text-xs">→</span>
+                  <span className="text-xs text-gray-500">🏆</span>
+                  <span className="text-[10px] text-teal-400 font-bold ml-1 bg-teal-500/10 border border-teal-500/15 px-1.5 py-0.5 rounded-full">Bạn ở đây</span>
                 </div>
+                <span className="text-gray-500 text-xs">{tierExpanded ? '▲' : '▼'}</span>
+              </button>
 
-                {/* Nhile Star call-out */}
-                <div className="mt-3 mx-0 bg-gold-500/6 border border-gold-500/15 rounded-xl px-3 py-2">
-                  <p className="text-[10px] text-gold-400 font-bold mb-0.5">⭐ Nhile Star là gì?</p>
-                  <p className="text-[9px] text-gray-400 leading-relaxed">
-                    Được dẫn dắt và làm việc cùng những leader đi trước — là founder của các công ty thực chiến. Không học lý thuyết, bạn học bằng cách làm việc thật.
-                  </p>
+              {/* Expanded tier detail */}
+              {tierExpanded && (
+                <div className="mt-2 bg-white/3 border border-white/8 rounded-xl p-4 space-y-3">
+                  {[
+                    { icon: '🌱', label: 'Volunteer',    active: true,  desc: 'Học & tích Nhile Credit — đổi quà, unlock video' },
+                    { icon: '💼', label: 'Work & Learn', active: false, desc: 'Làm dự án thực chiến — dành cho member kỷ luật tốt' },
+                    { icon: '⭐', label: 'Nhile Star',   active: false, desc: 'Được dẫn dắt bởi founder & leader từ doanh nghiệp thực chiến' },
+                    { icon: '🏆', label: 'Certificate',  active: false, desc: 'Hoàn thành hành trình — nhận giấy chứng nhận NLT' },
+                  ].map((t, i) => (
+                    <div key={i} className={`flex gap-3 items-start ${t.active ? '' : 'opacity-50'}`}>
+                      <span className="text-base flex-shrink-0 mt-0.5">{t.icon}</span>
+                      <div>
+                        <p className={`text-xs font-bold ${t.active ? 'text-teal-300' : 'text-gray-400'}`}>{t.label}</p>
+                        <p className="text-[10px] text-gray-500 leading-relaxed mt-0.5">{t.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-
-                <div className="mt-2.5 pt-2.5 border-t border-white/5 flex items-center justify-between">
-                  <p className="text-[10px] text-gray-500">Bạn đang ở: <span className="text-teal-400 font-bold">🌱 Volunteer</span></p>
-                  <button className="text-[10px] text-coral-400 font-bold hover:text-coral-300">Chi tiết →</button>
-                </div>
-              </div>
-
-              {/* Platform stats */}
-              <div className="flex items-center gap-5">
-                {PLATFORM_STATS.map(s => (
-                  <div key={s.label} className="flex items-center gap-1.5">
-                    <span className="text-base">{s.icon}</span>
-                    <span className="text-sm font-bold text-white">{s.value}</span>
-                    <span className="text-xs text-gray-400">{s.label}</span>
-                  </div>
-                ))}
-              </div>
+              )}
             </div>
           </div>
 
           {/* ── Category Pills (horizontal scroll) ──────── */}
-          <div className="px-4 md:px-8 py-4 border-b border-white/5 overflow-x-auto">
-            <div className="flex gap-2 min-w-max md:min-w-0 md:flex-wrap">
+          <div className="relative py-3 border-b border-white/5">
+            {/* Fade hint on right — signals scrollability to low-tech users */}
+            <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-gray-950 to-transparent pointer-events-none z-10 md:hidden" />
+            <div className="overflow-x-auto px-4 md:px-8 scrollbar-none" ref={pillsRef}>
+            <div className="flex gap-2 min-w-max md:min-w-0 md:flex-wrap pr-8 md:pr-0">
               {CATEGORIES.map(cat => (
                 <button
                   key={cat.id}
@@ -207,6 +167,7 @@ export default function AcademyExplorePage() {
                 <span>📱</span>
                 <span>Học offline</span>
               </button>
+            </div>
             </div>
           </div>
 

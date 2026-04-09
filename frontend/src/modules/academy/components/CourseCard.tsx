@@ -205,10 +205,14 @@ export default function CourseCard({ course, enrollment, userCredits = 1250 }: C
         <div className="mt-auto pt-1">
           {isCreditLock ? (
             <button
-              onClick={() => navigate('/academy')}
-              className="w-full py-2 rounded-xl text-sm font-bold bg-teal-500/10 border border-teal-500/20 text-teal-400 hover:bg-teal-500/15 transition-all active:scale-95"
+              onClick={() => navigate(creditShortfall > 0 ? '/academy' : `/training/courses/${course.slug}`)}
+              className={`w-full py-2 rounded-xl text-sm font-bold transition-all active:scale-95 ${
+                creditShortfall > 0
+                  ? 'bg-white/5 border border-white/10 text-gray-400 hover:bg-white/8'
+                  : 'bg-teal-500 hover:bg-teal-600 text-white shadow-sm shadow-teal-500/20'
+              }`}
             >
-              {creditShortfall > 0 ? `🪙 Học thêm để tích Credit` : '🔓 Mở khoá ngay →'}
+              {creditShortfall > 0 ? `🪙 Cần thêm ${creditShortfall} Credits` : '🔓 Mở khoá ngay →'}
             </button>
           ) : isTierLock ? (
             <button

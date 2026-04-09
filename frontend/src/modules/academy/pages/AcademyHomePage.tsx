@@ -194,85 +194,42 @@ export default function AcademyHomePage() {
                 </div>
               )}
 
-              {/* ── Nhile Tier Card ── */}
+              {/* ── Nhile Tier Card — compact ── */}
               <div className="px-4 mt-4">
-                <div className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-900 border border-white/8 rounded-2xl overflow-hidden">
-                  {/* Header */}
-                  <div className="bg-gradient-to-r from-teal-600/20 to-teal-500/5 border-b border-white/5 px-4 py-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full bg-teal-500/25 border border-teal-400/50 flex items-center justify-center">
-                        <span className="text-base">🌱</span>
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-white">Volunteer</p>
-                        <p className="text-[10px] text-teal-400">Cấp độ hiện tại</p>
-                      </div>
+                <div className="bg-gray-900 border border-white/8 rounded-2xl overflow-hidden">
+                  {/* Single row: tier + credits + progress */}
+                  <div className="px-4 py-3 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-teal-500/20 border-2 border-teal-400 flex items-center justify-center flex-shrink-0">
+                      <span className="text-base">🌱</span>
                     </div>
-                    <button
-                      onClick={() => navigate('/training/profile')}
-                      className="text-[10px] font-bold text-coral-400 bg-coral-500/10 border border-coral-500/20 px-2.5 py-1 rounded-full hover:bg-coral-500/20 transition-colors"
-                    >
-                      Nâng cấp ⭐
-                    </button>
-                  </div>
-
-                  {/* Credits + next tier */}
-                  <div className="px-4 py-3">
-                    {/* Credits */}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xl">🪙</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
                         <div>
-                          <p className="text-base font-bold text-white">{stats ? stats.total_xp : 0}</p>
-                          <p className="text-[10px] text-gray-400">Nhile Credits</p>
+                          <span className="text-xs font-bold text-teal-300">Volunteer</span>
+                          <span className="text-[10px] text-gray-500 ml-1.5">· {stats?.total_xp ?? 0} Credits</span>
                         </div>
+                        <button
+                          onClick={() => navigate('/training/profile')}
+                          className="text-[10px] text-gold-400 font-bold hover:underline flex-shrink-0"
+                        >
+                          Đổi quà →
+                        </button>
                       </div>
-                      <button
-                        onClick={() => navigate('/training/profile')}
-                        className="text-[10px] text-gold-400 font-medium hover:underline"
-                      >
-                        Đổi quà →
-                      </button>
-                    </div>
-
-                    {/* Progress to Work & Learn */}
-                    <div>
-                      <div className="flex justify-between text-[10px] text-gray-500 mb-1.5">
-                        <span>Tiến đến <span className="text-blue-400 font-bold">💼 Work &amp; Learn</span></span>
-                        <span className="text-gray-400 font-bold">
-                          {stats ? Math.min(stats.total_xp, 1500) : 0}/1500 XP
-                        </span>
-                      </div>
-                      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                      {/* Progress bar */}
+                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-teal-500 to-blue-400 rounded-full transition-all"
+                          className="h-full bg-gradient-to-r from-teal-500 to-blue-400 rounded-full"
                           style={{ width: `${Math.min(((stats?.total_xp ?? 0) / 1500) * 100, 100)}%` }}
                         />
                       </div>
-                      <p className="text-[9px] text-gray-600 mt-1.5">
-                        Work &amp; Learn → Làm dự án thật, dành cho member có kỷ luật học tập tốt
-                      </p>
+                      <p className="text-[9px] text-gray-600 mt-1">Cần 1500 XP → <span className="text-blue-400">💼 Work &amp; Learn</span></p>
                     </div>
-                  </div>
-
-                  {/* 4-Tier steps */}
-                  <div className="px-4 pb-3 flex gap-1.5">
-                    {[
-                      { icon: '🌱', label: 'Volunteer',   active: true,  desc: 'Học & tích Credit' },
-                      { icon: '💼', label: 'Work & Learn', active: false, desc: 'Dự án thực tế' },
-                      { icon: '⭐', label: 'Nhile Star',   active: false, desc: 'Founder mentor' },
-                      { icon: '🏆', label: 'Certificate',  active: false, desc: 'Chứng chỉ NLT' },
-                    ].map((t, i) => (
-                      <div key={i} className={`flex-1 rounded-xl px-1.5 py-2 text-center border ${
-                        t.active
-                          ? 'bg-teal-500/10 border-teal-500/25'
-                          : 'bg-white/2 border-white/5'
-                      }`}>
-                        <span className={`text-sm block ${t.active ? '' : 'opacity-25'}`}>{t.icon}</span>
-                        <p className={`text-[8px] font-bold mt-0.5 leading-tight ${t.active ? 'text-teal-300' : 'text-gray-600'}`}>{t.label}</p>
-                        <p className={`text-[7px] mt-0.5 leading-tight ${t.active ? 'text-gray-400' : 'text-gray-700'}`}>{t.desc}</p>
-                      </div>
-                    ))}
+                    <button
+                      onClick={() => navigate('/training/profile')}
+                      className="flex-shrink-0 text-[10px] font-bold text-coral-400 bg-coral-500/10 border border-coral-500/20 px-2.5 py-1.5 rounded-full hover:bg-coral-500/20 transition-colors whitespace-nowrap"
+                    >
+                      Xem hành trình
+                    </button>
                   </div>
                 </div>
               </div>
