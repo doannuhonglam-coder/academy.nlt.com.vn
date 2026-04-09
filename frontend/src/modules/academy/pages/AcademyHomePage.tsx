@@ -44,7 +44,8 @@ export default function AcademyHomePage() {
   const streak  = dashboard?.streak;
   const active  = dashboard?.active_lesson;
   const challenge = dashboard?.daily_challenge;
-  const name    = dashboard?.person.display_name?.split(' ').at(-1) ?? 'bạn';
+  const nameParts = dashboard?.person.display_name?.split(' ');
+  const name      = (nameParts && nameParts[nameParts.length - 1]) ?? 'bạn';
 
   return (
     <div className="flex min-h-screen bg-gray-950">
